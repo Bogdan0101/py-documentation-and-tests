@@ -147,8 +147,8 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
         .select_related("movie", "cinema_hall")
         .annotate(
             tickets_available=(
-                    F("cinema_hall__rows") * F("cinema_hall__seats_in_row")
-                    - Count("tickets")
+                F("cinema_hall__rows") * F("cinema_hall__seats_in_row")
+                - Count("tickets")
             )
         )
     )
@@ -181,7 +181,7 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
     @extend_schema(parameters=[
         OpenApiParameter(
             name="date",
-            type=datetime,
+            type=str,
             description="Filter movie session by date (ex. ?date=2022-01-10)",
         ),
         OpenApiParameter(
