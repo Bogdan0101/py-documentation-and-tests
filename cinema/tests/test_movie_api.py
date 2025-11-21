@@ -218,7 +218,7 @@ class MovieUserTests(TestCase):
         self.assertNotIn(self.serializer_movie_one.data, res.data)
 
     def test_filter_movies_by_title(self):
-        res = self.client.get(MOVIE_URL, {"title": f"{self.serializer_movie_two.data["title"]}"})
+        res = self.client.get(MOVIE_URL, {"title": f"{self.serializer_movie_two.data['title']}"})
         self.assertIn(self.serializer_movie_two.data, res.data)
         self.assertNotIn(self.serializer_movie_one.data, res.data)
 
